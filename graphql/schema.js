@@ -8,7 +8,7 @@ import {
     GraphQLObjectType, GraphQLInt,
 } from "graphql";
 
-import { getProgram } from "./data";
+import {getProgram, getCourses, getCourse} from "./data";
 
 const programEnum = new GraphQLEnumType({
 
@@ -28,8 +28,19 @@ const programEnum = new GraphQLEnumType({
 
 });
 
+const courseEnum = new GraphQLEnumType({
 
-const programInterface = new GraphQLObjectType({
+    name: "CourseEnum",
+    description: "Any course taken.",
+    values: {
+        "CMPT-434": {
+            value:"C"
+        }
+    }
+})
+
+
+const programType = new GraphQLObjectType({
 
     name: "Program",
     description: "Any post-secondary program.",
@@ -55,15 +66,16 @@ const programInterface = new GraphQLObjectType({
             description: "The year that the requirements of this program were completed."
         },
 
-      /*  courses: {
-            type: GraphQLList(courseInterface),
-            description: "Any relevant courses taken as part of this program."
-        }*/
+        courses: {
+            type: GraphQLList(courseType),
+            description: "Any relevant courses taken as part of this program.",
+            resolve: (program) => getCourses(program)
+        }
     }),
 })
 
 
-const courseInterface = new GraphQLInterfaceType({
+const courseType = new GraphQLObjectType({
 
     name: "Course",
     description: "A course taken as part of some program.",
@@ -85,8 +97,9 @@ const courseInterface = new GraphQLInterfaceType({
         },
 
         programs: {
-            type: new GraphQLList(programInterface),
-            description: "Any related programs the course was taken for."
+            type: new GraphQLList(programType),
+            description: "Any related programs the course was taken for.",
+            resolve: (program) => getProgram(program)
         }
 
     })
@@ -97,7 +110,7 @@ const queryType = new GraphQLObjectType({
     fields: () => ({
 
         program: {
-            type: programInterface,
+            type: programType,
             args: {
                 programName: {
                     description: "If omitted, returns the most recent program completed. If provided, returns details on the given program.",
@@ -107,10 +120,21 @@ const queryType = new GraphQLObjectType({
             resolve: (_source, { programName }) => getProgram(programName)
         },
 
+        course: {
+            type: courseType,
+            args: {
+                courseID: {
+                    description: "The subject and course number of the course as 'SUBJ-1234'.",
+                    type: GraphQLString
+                }
+            },
+            resolve: (_source, { courseID }) => getCourse(courseID)
+        }
+
     })
 })
 
 export const ResumeSchema = new GraphQLSchema({
     query: queryType,
-    types: [programInterface]
+    types: [programType, courseType]
 });

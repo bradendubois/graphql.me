@@ -2,13 +2,15 @@
 import { ResumeSchema } from "../../graphql/schema"
 import { graphql } from "graphql"
 
-let query = '{ program(programName: undergraduate) { kind } }'
+let query = '{ course(courseID: "CMPT-434") { name } program(programName: undergraduate) { kind courses { name } } }'
 
 export default (req, res) => {
 
-  graphql(ResumeSchema, query).then(result => console.log(result))
+  graphql(ResumeSchema, query).then(result => {
+    console.log(result)
+    res.status(200).json(result)
+  })
 
-  res.status(200).json({ name: 'John Doe' })
 
 }
 
