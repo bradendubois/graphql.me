@@ -35,7 +35,8 @@ const programs: {| [program: string]: Program |} = {
     ["undergrad"]: undergrad
 }
 
-export function getProgram(program: string | null): Program {
+export function getProgram(program: string): Program {
+    console.log("Got", program)
     return undergrad
     return programs[program] ?? undergrad
 }

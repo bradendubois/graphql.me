@@ -16,12 +16,12 @@ const programEnum = new GraphQLEnumType({
     description: "Any post-secondary program.",
     values: {
         "undergraduate": {
-            value: 1,
+            value: "undergraduate",
             description: "B.Sc. (Double Honours) in Computer Science & Philosophy"
         },
 
         "certificate": {
-            value: 2,
+            value: "certificate",
             description: "Certificate in Ethics, Justice, and Law"
         }
     }
@@ -29,7 +29,7 @@ const programEnum = new GraphQLEnumType({
 });
 
 
-const programInterface = new GraphQLInterfaceType({
+const programInterface = new GraphQLObjectType({
 
     name: "Program",
     description: "Any post-secondary program.",
@@ -97,15 +97,14 @@ const queryType = new GraphQLObjectType({
     fields: () => ({
 
         program: {
-
             type: programInterface,
             args: {
-                program: {
+                programName: {
                     description: "If omitted, returns the most recent program completed. If provided, returns details on the given program.",
                     type: programEnum
                 }
             },
-            resolve: (_source, { program }) => getProgram(program)
+            resolve: (_source, { programName }) => getProgram(programName)
         },
 
     })

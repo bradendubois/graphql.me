@@ -2,7 +2,7 @@
 import { ResumeSchema } from "../../graphql/schema"
 import { graphql } from "graphql"
 
-let query = '{ program { kind } }'
+let query = '{ program(programName: undergraduate) { kind } }'
 
 export default (req, res) => {
 
