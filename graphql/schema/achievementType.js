@@ -1,6 +1,10 @@
-import {GraphQLInt, GraphQLObjectType, GraphQLString} from "graphql";
+import {
+    GraphQLInt,
+    GraphQLObjectType,
+    GraphQLString
+} from "graphql";
 
-const achievementType = new GraphQLObjectType({
+export const achievementType = new GraphQLObjectType({
 
     name: "Achievement",
     description: "Any achievement earned during or related to an educational program.",
@@ -8,22 +12,22 @@ const achievementType = new GraphQLObjectType({
 
         title: {
             type: GraphQLString,
-            description: ""
+            description: "Title of the achievement."
         },
 
         year: {
             type: GraphQLInt,
-            description: ""
+            description: "Year the achievement occurred or was obtained."
         },
 
         year_modifier: {
             type: GraphQLString,
-            description: ""
+            description: "Section of the year the achievement occurred or was obtained; can be a month (January, ...) or season (Winter, ...)."
         },
 
         description: {
             type: GraphQLString,
-            description: ""
+            description: "Relevant details of the achievement."
         }
     })
 })

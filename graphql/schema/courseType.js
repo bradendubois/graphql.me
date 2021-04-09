@@ -1,6 +1,13 @@
-import {GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from "graphql";
-import {programType} from "./programType";
-import {getProgramsWithCourse} from "../data";
+import {
+    GraphQLInt,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLObjectType,
+    GraphQLString
+} from "graphql";
+
+import { programType } from "./programType";
+import { getProgramsWithCourse } from "../data";
 
 export const courseType = new GraphQLObjectType({
 
@@ -30,6 +37,5 @@ export const courseType = new GraphQLObjectType({
             description: "Any related programs the course was taken for.",
             resolve: (course) => getProgramsWithCourse(course)
         }
-
     })
 })

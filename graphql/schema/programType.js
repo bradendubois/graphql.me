@@ -1,4 +1,35 @@
-import {GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from "graphql";
+import {
+    GraphQLEnumType,
+    GraphQLInt,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLObjectType,
+    GraphQLString
+} from "graphql";
+
+import { achievementType } from "./achievementType";
+import { courseType } from "./courseType";
+import { groupType } from "./groupType";
+
+
+export const programEnum = new GraphQLEnumType({
+
+    name: "ProgramEnum",
+    description: "Any post-secondary program.",
+    values: {
+        "undergraduate": {
+            value: "undergraduate",
+            description: "B.Sc. (Double Honours) in Computer Science & Philosophy"
+        },
+
+        "certificate": {
+            value: "certificate",
+            description: "Certificate in Ethics, Justice, and Law"
+        }
+    }
+
+});
+
 
 export const programType = new GraphQLObjectType({
 

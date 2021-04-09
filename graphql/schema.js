@@ -1,135 +1,16 @@
 import {
-    GraphQLEnumType,
-    GraphQLInt,
     GraphQLList,
-    GraphQLNonNull,
     GraphQLObjectType,
     GraphQLSchema,
-    GraphQLString,
+    GraphQLString
 } from "graphql";
 
-import {getCourse, getEmployment, getProgram, getPrograms, getProgramsWithCourse} from "./data";
+import { getCourse, getEmployment, getProgram, getPrograms} from "./data";
 
-import {programType} from "./schema/programType";
-import {employmentType} from "./schema/employmentType";
+import { programEnum, programType } from "./schema/programType";
+import { employmentType } from "./schema/employmentType";
+import { courseType } from "./schema/courseType";
 
-
-const programEnum = new GraphQLEnumType({
-
-    name: "ProgramEnum",
-    description: "Any post-secondary program.",
-    values: {
-        "undergraduate": {
-            value: "undergraduate",
-            description: "B.Sc. (Double Honours) in Computer Science & Philosophy"
-        },
-
-        "certificate": {
-            value: "certificate",
-            description: "Certificate in Ethics, Justice, and Law"
-        }
-    }
-
-});
-
-
-
-const achievementType = new GraphQLObjectType({
-
-    name: "Achievement",
-    description: "Any achievement earned during or related to an educational program.",
-    fields: () => ({
-
-        title: {
-            type: GraphQLString,
-            description: ""
-        },
-
-        year: {
-            type: GraphQLInt,
-            description: ""
-        },
-
-        year_modifier: {
-            type: GraphQLString,
-            description: ""
-        },
-
-        description: {
-            type: GraphQLString,
-            description: ""
-        }
-    })
-})
-
-
-
-const groupType = new GraphQLObjectType({
-
-    name: "Group",
-    description: "Any achievement earned during or related to an educational program.",
-    fields: () => ({
-
-        title: {
-            type: GraphQLNonNull(GraphQLString),
-            description: ""
-        },
-
-        role: {
-            type: GraphQLNonNull(GraphQLString),
-            description: ""
-        },
-
-        join_year: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: ""
-        },
-
-        exit_year: {
-            type: GraphQLInt,
-            description: ""
-        },
-
-        details: {
-            type: GraphQLList(GraphQLString),
-            description: ""
-        },
-
-    })
-})
-
-
-const courseType = new GraphQLObjectType({
-
-    name: "Course",
-    description: "A course taken as part of some program.",
-    fields: () => ({
-
-        subject: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: "The subject of the course.",
-            resolve: (course) => course.courseID.split("-")[0]
-        },
-
-        course: {
-            type: new GraphQLNonNull(GraphQLInt),
-            description: "The course number.",
-            resolve: (course) => course.courseID.split("-")[1]
-        },
-
-        name: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: "The name or title of the course."
-        },
-
-        programs: {
-            type: new GraphQLList(programType),
-            description: "Any related programs the course was taken for.",
-            resolve: (course) => getProgramsWithCourse(course)
-        }
-
-    })
-})
 
 const queryType = new GraphQLObjectType({
     name: "Query",

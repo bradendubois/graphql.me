@@ -1,35 +1,40 @@
-import {GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from "graphql";
+import {
+    GraphQLInt,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLObjectType,
+    GraphQLString
+} from "graphql";
 
-const groupType = new GraphQLObjectType({
+export const groupType = new GraphQLObjectType({
 
     name: "Group",
-    description: "Any achievement earned during or related to an educational program.",
+    description: "Any student group membership was maintained at.",
     fields: () => ({
 
         title: {
             type: GraphQLNonNull(GraphQLString),
-            description: ""
+            description: "Title of the student group."
         },
 
         role: {
             type: GraphQLNonNull(GraphQLString),
-            description: ""
+            description: "Role held within the student group."
         },
 
         join_year: {
             type: GraphQLNonNull(GraphQLInt),
-            description: ""
+            description: "Year membership began."
         },
 
         exit_year: {
             type: GraphQLInt,
-            description: ""
+            description: "Year membership completed."
         },
 
         details: {
             type: GraphQLList(GraphQLString),
-            description: ""
+            description: "Any details of involvement or duties within the student group."
         },
-
     })
 })

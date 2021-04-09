@@ -1,6 +1,13 @@
-import {GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from "graphql";
+import {
+    GraphQLInt,
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLObjectType,
+    GraphQLString
+} from "graphql";
 
 export const employmentType = new GraphQLObjectType({
+
     name: "Employment",
     description: "Any means of employment.",
     fields: () => ({
