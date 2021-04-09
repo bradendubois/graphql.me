@@ -1,5 +1,6 @@
 
 /************************* Types *************************/
+
 export type Program = {
     kind: string,
     field: Array<string>,
@@ -16,8 +17,13 @@ export type Course = {
 
 export type Employment = {
     title: string,
-    supervisor: string,
-
+    description: Array<string>,
+    institution: string,
+    location: string,
+    start_year: number,
+    start_month: string,
+    end_year: number,
+    end_month: string
 }
 
 /************************* Data *************************/
@@ -137,10 +143,49 @@ const PHIL_433: Course = {
     name: "Kantian Ethics"
 }
 
+
+const TA_145: Employment = {
+    title: "Teaching Assistant",
+    institution: "University of Saskatchewan",
+    location: "Saskatoon, SK",
+    description: [
+        "Teaching Assistant for CMPT 145 - Principles of Computer Science"
+    ],
+    start_year: 2021,
+    start_month: "January",
+    end_year: 2021,
+    end_month: "April"
+}
+
+const MA_145: Employment = {
+    title: "Marking Assistant",
+    institution: "University of Saskatchewan",
+    location: "Saskatoon, SK",
+    description: [
+        "Marking Assistant for CMPT 140 - Introduction to Creative Computing"
+    ],
+    start_year: 2020,
+    start_month: "September",
+    end_year: 2020,
+    end_month: "December"
+}
+
+const RA: Employment = {
+    title: "Student Research Assistant",
+    description: [
+        "Research Assistant under the supervision of Dr. Eric Neufeld.",
+        "Concentrated focus on causal inference in statistics such as the do-calculus of Judea Pearl et. al."
+    ],
+    institution: "University of Saskatchewan",
+    location: "Saskatoon, SK",
+    start_year: 2020,
+    start_month: "May",
+}
+
+
 /************************* Maps *************************/
 
 const allCourses: Array<Course> = [
-
 
     // CMPT
     CMPT_141, CMPT_145, CMPT_214, CMPT_215, CMPT_260, CMPT_270, CMPT_280,
@@ -172,6 +217,10 @@ const programs: {| [program: string]: Program |} = {
     ["certificate"]: certificate
 };
 
+const employment: Array<Employment> = [
+    RA, TA_145, MA_145
+]
+
 /************************* Functions *************************/
 
 export function getPrograms(): Array<Program> {
@@ -192,4 +241,8 @@ export function getProgramsWithCourse(course: Course): Array<Program> {
     if (undergrad.courses.indexOf(course) > -1) tentative.push(undergrad)
     if (certificate.courses.indexOf(course) > -1) tentative.push(certificate)
     return tentative
+}
+
+export function getEmployment(): Array<Employment> {
+    return employment
 }
