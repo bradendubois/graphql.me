@@ -4,11 +4,10 @@ import {
     GraphQLList,
     GraphQLNonNull,
     GraphQLEnumType,
-    GraphQLInterfaceType,
     GraphQLObjectType, GraphQLInt,
 } from "graphql";
 
-import {getProgram, getCourses, getCourse} from "./data";
+import {getPrograms, getProgram, getProgramsWithCourse, getCourses, getCourse} from "./data";
 
 const programEnum = new GraphQLEnumType({
 
@@ -27,17 +26,6 @@ const programEnum = new GraphQLEnumType({
     }
 
 });
-
-const courseEnum = new GraphQLEnumType({
-
-    name: "CourseEnum",
-    description: "Any course taken.",
-    values: {
-        "CMPT-434": {
-            value:"C"
-        }
-    }
-})
 
 
 const programType = new GraphQLObjectType({
@@ -69,7 +57,6 @@ const programType = new GraphQLObjectType({
         courses: {
             type: GraphQLList(courseType),
             description: "Any relevant courses taken as part of this program.",
-            resolve: (program) => getCourses(program)
         }
     }),
 })
@@ -83,12 +70,14 @@ const courseType = new GraphQLObjectType({
 
         subject: {
             type: new GraphQLNonNull(GraphQLString),
-            description: "The subject of the course."
+            description: "The subject of the course.",
+            resolve: (course) => course.courseID.split("-")[0]
         },
 
         course: {
             type: new GraphQLNonNull(GraphQLInt),
-            description: "The course number."
+            description: "The course number.",
+            resolve: (course) => course.courseID.split("-")[1]
         },
 
         name: {
@@ -99,7 +88,7 @@ const courseType = new GraphQLObjectType({
         programs: {
             type: new GraphQLList(programType),
             description: "Any related programs the course was taken for.",
-            resolve: (program) => getProgram(program)
+            resolve: (course) => getProgramsWithCourse(course)
         }
 
     })
@@ -109,11 +98,16 @@ const queryType = new GraphQLObjectType({
     name: "Query",
     fields: () => ({
 
+        programs: {
+          type: GraphQLList(programType),
+          resolve: (_source) => getPrograms()
+        },
+
         program: {
             type: programType,
             args: {
                 programName: {
-                    description: "If omitted, returns the most recent program completed. If provided, returns details on the given program.",
+                    description: "Returns details on the given program.",
                     type: programEnum
                 }
             },
