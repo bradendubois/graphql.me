@@ -1,19 +1,18 @@
 import {
-    GraphQLSchema,
-    GraphQLString,
+    GraphQLEnumType,
+    GraphQLInt,
     GraphQLList,
     GraphQLNonNull,
-    GraphQLEnumType,
-    GraphQLObjectType, GraphQLInt,
+    GraphQLObjectType,
+    GraphQLSchema,
+    GraphQLString,
 } from "graphql";
 
-import {
-    getPrograms,
-    getProgram,
-    getProgramsWithCourse,
-    getCourse,
-    getEmployment
-} from "./data";
+import {getCourse, getEmployment, getProgram, getPrograms, getProgramsWithCourse} from "./data";
+
+import {programType} from "./schema/programType";
+import {employmentType} from "./schema/employmentType";
+
 
 const programEnum = new GraphQLEnumType({
 
@@ -34,53 +33,6 @@ const programEnum = new GraphQLEnumType({
 });
 
 
-
-const employmentType = new GraphQLObjectType({
-    name: "Employment",
-    description: "Any means of employment.",
-    fields: () => ({
-
-        title: {
-            type: GraphQLNonNull(GraphQLString),
-            description: "Title of the position held."
-        },
-
-        institution: {
-            type: GraphQLString,
-            description: "Institution or business at which research was carried out or employment was held."
-        },
-
-        location: {
-            type: GraphQLString,
-            description: "Location of the institution or business."
-        },
-
-        description: {
-            type: GraphQLNonNull(GraphQLList(GraphQLString)),
-            description: "Descriptions of research or employment, including any relevant duties."
-        },
-
-        start_year: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "Year research or employment began."
-        },
-
-        start_month: {
-            type: GraphQLNonNull(GraphQLString),
-            description: "Month research or employment began."
-        },
-
-        end_year: {
-            type: GraphQLInt,
-            description: "Year research or employment completed."
-        },
-
-        end_month: {
-            type: GraphQLString,
-            description: "Month research or employment completed."
-        }
-    })
-})
 
 const achievementType = new GraphQLObjectType({
 
@@ -144,50 +96,6 @@ const groupType = new GraphQLObjectType({
         },
 
     })
-})
-
-
-const programType = new GraphQLObjectType({
-
-    name: "Program",
-    description: "Any post-secondary program.",
-    fields: () => ({
-
-        kind: {
-            type: GraphQLNonNull(GraphQLString),
-            description: "The type of the program."
-        },
-
-        field: {
-            type: GraphQLNonNull(GraphQLList(GraphQLString)),
-            description: "The specific areas of study."
-        },
-
-        year_began: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "The year that study of this program officially began."
-        },
-
-        year_finish: {
-            type: GraphQLInt,
-            description: "The year that the requirements of this program were completed."
-        },
-
-        courses: {
-            type: GraphQLList(courseType),
-            description: "Any relevant courses taken as part of this program.",
-        },
-
-        achievements: {
-            type: GraphQLList(achievementType),
-            description: "Any relevant achievements earned during or related to this program.",
-        },
-
-        groups: {
-            type: GraphQLList(groupType),
-            description: "Any relevant student groups in which membership was maintained.",
-        }
-    }),
 })
 
 
