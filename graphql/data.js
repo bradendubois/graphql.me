@@ -1,13 +1,21 @@
+// @flow
 
 /************************* Types *************************/
 
+export type YearModifier =
+    "January" | "February" | "March" | "April" |
+    "May" | "June" | "July" | "August" |
+    "September" | "October" | "November" | "December" |
+    "Winter" | "Spring" | "Summer" | "Fall"
+
 export type Program = {
     kind: string,
-    field: Array<string>,
+    major: string,
     year_began: number,
-    year_finish: number,
+    year_finish?: number,
     courses: Array<Course>,
-    ...
+    achievements?: Array<Achievement>,
+    groups?: Array<StudentGroup>
 }
 
 export type Course = {
@@ -22,8 +30,24 @@ export type Employment = {
     location: string,
     start_year: number,
     start_month: string,
-    end_year: number,
-    end_month: string
+    end_year?: number,
+    end_month?: string
+}
+
+export type Achievement = {
+    title: string,
+    year: number,
+    year_modifier: YearModifier,
+    description: string,
+}
+
+export type StudentGroup = {
+    title: string,
+    role: string,
+    join_year: number,
+    exit_year?: number,
+    details?: Array<string>,
+    id: string
 }
 
 /************************* Data *************************/
@@ -183,6 +207,65 @@ const RA: Employment = {
 }
 
 
+const CS_USRA: Achievement = {
+    title: "Computer Science USRA",
+    description: "Recipient of a Department of Computer Science Undergraduate Student Research Assistant award. Research conducted under the supervision of Dr. Eric Neufeld for the Spring/Summer of 2020.",
+    year: 2020,
+    year_modifier: "Spring",
+}
+
+const Competitive_Programming: Achievement = {
+    title: "Competitive Programming",
+    description: "Winning team of the Advanced category for the Local Qualifier in the ACM Inter-Collegiate Programming Contest at the University of Saskatchewan. Competed in the Rocky Mountain Regional Qualifier in Edmonton in October 2019.",
+    year: 2019,
+    year_modifier: "Fall"
+}
+
+const Unix_Bootcamps: Achievement = {
+    title: "Unix Bootcamp Presentations",
+    description: "Co-prepared and delivered intermediate-level presentations for the CSSS's Unix Bootcamp.",
+    year: 2019,
+    year_modifier: "Fall"
+}
+
+
+const ASSU: StudentGroup = {
+    title: "Arts and Science Students' Union",
+    role: "Technical Manager",
+    join_year: 2017,
+    exit_year: 2020,
+    details: [
+        "Responsible for maintaining the ASSU website (assu.usask.ca).",
+        "General technical support."
+    ],
+    id: "assu"
+}
+
+const CompetitiveProgrammingClub: StudentGroup = {
+    title: "Competitive Programming Club",
+    role: "Member",
+    join_year: 2019,
+    details: [
+        "The Competitive Programming Club collaborates to share information and strategies amongst its members to improve at competitive programming in the form of contests and various online judges."
+    ],
+    id: "cpc"
+}
+
+const CST: StudentGroup = {
+    title: "Cyber Security Team",
+    role: "Member",
+    join_year: 2019,
+    exit_year: 2020,
+    id: "cst"
+}
+
+const CSSS: StudentGroup = {
+    title: "Computer Science Students' Society",
+    role: "Member",
+    join_year: 2017,
+    id: "csss"
+}
+
 /************************* Maps *************************/
 
 const allCourses: Array<Course> = [
@@ -197,16 +280,35 @@ const allCourses: Array<Course> = [
 ]
 
 
+
+const employment: Array<Employment> = [
+    RA, TA_145, MA_145
+]
+
+
+const achievements: Array<Achievement> = [
+    CS_USRA, Competitive_Programming, Unix_Bootcamps
+]
+
+const student_groups: Array<StudentGroup> = [
+    ASSU, CompetitiveProgrammingClub, CST, CSSS
+]
+
+
+
+
 const undergrad: Program = {
     kind: "B.Sc. Double Honours",
-    field: ["Computer Science", "Philosophy"],
+    major: "Computer Science &Philosophy",
     year_began: 2017,
-    courses: allCourses
+    courses: allCourses,
+    achievements: [CS_USRA, Competitive_Programming, Unix_Bootcamps],
+    groups: student_groups
 };
 
 const certificate: Program = {
     kind: "Certificate of Proficiency",
-    field: ["Ethics, Justice, and Law"],
+    major: "Ethics, Justice, and Law",
     year_began: 2017,
     year_finish: 2020,
     courses: [PHIL_233, PHIL_236, PHIL_262, PHIL_333, PHIL_433]
@@ -217,9 +319,8 @@ const programs: {| [program: string]: Program |} = {
     ["certificate"]: certificate
 };
 
-const employment: Array<Employment> = [
-    RA, TA_145, MA_145
-]
+
+
 
 /************************* Functions *************************/
 
@@ -232,7 +333,7 @@ export function getProgram(program: string): Program {
 }
 
 export function getCourse(courseID: string): Course | null {
-    return allCourses.find(course => course.courseID === courseID)
+    return allCourses.find(course => course.courseID === courseID) || null
 }
 
 // TODO - revise this
@@ -245,4 +346,16 @@ export function getProgramsWithCourse(course: Course): Array<Program> {
 
 export function getEmployment(): Array<Employment> {
     return employment
+}
+
+export function getAchievements(): Array<Achievement> {
+    return achievements
+}
+
+export function getStudentGroup(groupID: string): StudentGroup | null {
+    return student_groups.find(group => group.id === groupID) || null
+}
+
+export function getStudentGroups(): Array<StudentGroup> {
+    return student_groups
 }

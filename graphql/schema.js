@@ -7,7 +7,13 @@ import {
     GraphQLObjectType, GraphQLInt,
 } from "graphql";
 
-import {getPrograms, getProgram, getProgramsWithCourse, getCourses, getCourse, getEmployment} from "./data";
+import {
+    getPrograms,
+    getProgram,
+    getProgramsWithCourse,
+    getCourse,
+    getEmployment
+} from "./data";
 
 const programEnum = new GraphQLEnumType({
 
@@ -26,6 +32,7 @@ const programEnum = new GraphQLEnumType({
     }
 
 });
+
 
 
 const employmentType = new GraphQLObjectType({
@@ -75,6 +82,71 @@ const employmentType = new GraphQLObjectType({
     })
 })
 
+const achievementType = new GraphQLObjectType({
+
+    name: "Achievement",
+    description: "Any achievement earned during or related to an educational program.",
+    fields: () => ({
+
+        title: {
+            type: GraphQLString,
+            description: ""
+        },
+
+        year: {
+            type: GraphQLInt,
+            description: ""
+        },
+
+        year_modifier: {
+            type: GraphQLString,
+            description: ""
+        },
+
+        description: {
+            type: GraphQLString,
+            description: ""
+        }
+    })
+})
+
+
+
+const groupType = new GraphQLObjectType({
+
+    name: "Group",
+    description: "Any achievement earned during or related to an educational program.",
+    fields: () => ({
+
+        title: {
+            type: GraphQLNonNull(GraphQLString),
+            description: ""
+        },
+
+        role: {
+            type: GraphQLNonNull(GraphQLString),
+            description: ""
+        },
+
+        join_year: {
+            type: GraphQLNonNull(GraphQLInt),
+            description: ""
+        },
+
+        exit_year: {
+            type: GraphQLInt,
+            description: ""
+        },
+
+        details: {
+            type: GraphQLList(GraphQLString),
+            description: ""
+        },
+
+    })
+})
+
+
 const programType = new GraphQLObjectType({
 
     name: "Program",
@@ -104,6 +176,16 @@ const programType = new GraphQLObjectType({
         courses: {
             type: GraphQLList(courseType),
             description: "Any relevant courses taken as part of this program.",
+        },
+
+        achievements: {
+            type: GraphQLList(achievementType),
+            description: "Any relevant achievements earned during or related to this program.",
+        },
+
+        groups: {
+            type: GraphQLList(groupType),
+            description: "Any relevant student groups in which membership was maintained.",
         }
     }),
 })
@@ -179,6 +261,7 @@ const queryType = new GraphQLObjectType({
 
     })
 })
+
 
 export const ResumeSchema = new GraphQLSchema({
     query: queryType,
