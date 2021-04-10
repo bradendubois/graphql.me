@@ -4,6 +4,7 @@ import {
     GraphQLString
 } from "graphql";
 
+import { programType } from "./programType"
 import { getProgramsWithAchievement } from "../resolvers"
 
 export const achievementType = new GraphQLObjectType({
@@ -33,6 +34,8 @@ export const achievementType = new GraphQLObjectType({
         },
 
         program: {
+            type: programType,
+            description: "The program the achievement was most relevant to.",
             resolve: (achievement) => getProgramsWithAchievement(achievement)
         }
     })
