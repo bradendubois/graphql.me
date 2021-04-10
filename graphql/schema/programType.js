@@ -43,7 +43,7 @@ export const programType = new GraphQLObjectType({
         },
 
         field: {
-            type: GraphQLNonNull(GraphQLList(GraphQLString)),
+            type: GraphQLNonNull(GraphQLString),
             description: "The specific areas of study."
         },
 
