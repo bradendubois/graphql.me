@@ -1,6 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+My personal resume, as an avant-garde [GraphQL](https://graphql.org/).
 
-## Getting Started
+## Summary
+
+- This GraphQL API is built with the [reference implementation](https://github.com/graphql/graphql-js) of [GraphQL](https://graphql.org/).
+- The [schema](https://graphql.org/learn/schema/) can be found [here](./graphql/schema.js).
+- Currently, there is no database (as it seems unnecessary for such small data), and instead is stored [here](./graphql/data).
+- A [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) interface is accessible at [api.bradendubois.dev](https://api.bradendubois.dev/).
+- Queries can also be made directly to [api.bradendubois.dev/api/graphql](http://api.bradendubois.dev/api/graphql).
+- This is a [Next.js](https://nextjs.org/) project, hosted on [Vercel Platform](https://vercel.com/),the creators of Next.js.
+
+## Start
 
 First, run the development server:
 
@@ -10,25 +19,12 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the GraphiQL IDE.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Learn
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/graphql.js`.
+To learn more about Next.js or GraphQL, take a look at the following resources:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
+- [Learn GraphQL](https://graphql.org/learn/) - learn about GraphQL.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
