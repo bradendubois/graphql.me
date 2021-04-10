@@ -1,4 +1,4 @@
-My personal resume, as an avant-garde [GraphQL](https://graphql.org/).
+My personal resume, as an avant-garde [GraphQL](https://graphql.org/) API.
 
 ## Summary
 
