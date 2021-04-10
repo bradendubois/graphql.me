@@ -1,20 +1,30 @@
 import {
-    GraphQLList,
+    GraphQLList, GraphQLNonNull,
     GraphQLObjectType,
     GraphQLSchema,
     GraphQLString
 } from "graphql";
 
-import {getAchievements, getCourse, getEmployment, getProgram, getPrograms, getStudentGroups} from "./data";
+import {
+    getAchievement,
+    getAchievements,
+    getCourse,
+    getEmployment,
+    getProgram,
+    getPrograms,
+    getStudentGroup,
+    getStudentGroups
+} from "./data";
 
 import { courseType } from "./schema/courseType";
 import { employmentType } from "./schema/employmentType";
 import { programEnum, programType } from "./schema/programType";
-import {groupType} from "./schema/groupType";
-import {achievementType} from "./schema/achievementType";
+import { groupType } from "./schema/groupType";
+import { achievementType } from "./schema/achievementType";
 
 
 const queryType = new GraphQLObjectType({
+
     name: "Query",
     fields: () => ({
 
@@ -50,16 +60,38 @@ const queryType = new GraphQLObjectType({
             resolve: (_source) => getEmployment()
         },
 
+
+        achievement: {
+            type: achievementType,
+            args: {
+                achievementID: {
+                    description: "The ID / shorthand of the achievement.",
+                    type: GraphQLNonNull(GraphQLString)
+                }
+            },
+            resolve: (_source, { achievementID }) => getAchievement(achievementID)
+        },
+
         achievements: {
             type: GraphQLList(achievementType),
             resolve: (_source) => getAchievements()
         },
-        
+
+        group: {
+            type: groupType,
+            args: {
+                groupID: {
+                    description: "The ID / shorthand of the group.",
+                    type: GraphQLNonNull(GraphQLString)
+                }
+            },
+            resolve: (_source, { groupID }) => getStudentGroup(groupID)
+        },
+
         groups: {
             type: GraphQLList(groupType),
             resolve: (_source) => getStudentGroups()
         }
-
     })
 })
 
