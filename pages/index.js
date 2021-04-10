@@ -10,10 +10,10 @@ const Home = () => (
         <Head>
             <title>GraphQL | api.bradendubois.dev</title>
             <meta charSet="UTF-8" />
-            <meta name="description" content="Free Web tutorials" />
             <meta property="og:title" content="GraphQL | api.bradendubois.dev" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://www.api.bradendubois.dev" />
+            <meta property="og:description" content="GraphQL API of Braden Dubois" />
         </Head>
 
         <main>
