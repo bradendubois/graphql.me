@@ -5,11 +5,13 @@ import {
     GraphQLString
 } from "graphql";
 
-import { getCourse, getEmployment, getProgram, getPrograms} from "./data";
+import {getAchievements, getCourse, getEmployment, getProgram, getPrograms, getStudentGroups} from "./data";
 
-import { programEnum, programType } from "./schema/programType";
-import { employmentType } from "./schema/employmentType";
 import { courseType } from "./schema/courseType";
+import { employmentType } from "./schema/employmentType";
+import { programEnum, programType } from "./schema/programType";
+import {groupType} from "./schema/groupType";
+import {achievementType} from "./schema/achievementType";
 
 
 const queryType = new GraphQLObjectType({
@@ -46,13 +48,23 @@ const queryType = new GraphQLObjectType({
         employment: {
             type: GraphQLList(employmentType),
             resolve: (_source) => getEmployment()
+        },
+
+        achievements: {
+            type: GraphQLList(achievementType),
+            resolve: (_source) => getAchievements()
+        },
+        
+        groups: {
+            type: GraphQLList(groupType),
+            resolve: (_source) => getStudentGroups()
         }
 
     })
 })
 
 
-export const ResumeSchema = new GraphQLSchema({
+export const Schema = new GraphQLSchema({
     query: queryType,
     types: [programType, courseType]
 });
