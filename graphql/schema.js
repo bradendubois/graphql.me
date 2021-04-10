@@ -14,7 +14,7 @@ import {
     getPrograms,
     getStudentGroup,
     getStudentGroups
-} from "./data";
+} from "./resolvers";
 
 import { courseType } from "./schema/courseType";
 import { employmentType } from "./schema/employmentType";

@@ -12,8 +12,8 @@ import { allStudentGroups } from "./studentGroups";
 
 export type Program = {
     id: string,
-    kind: string,
-    major: string,
+    title: string,
+    field: string,
     year_began: number,
     year_finish?: number,
     courses: Array<Course>,
@@ -25,8 +25,8 @@ export type Program = {
 
 export const undergrad: Program = {
     id: "undergraduate",
-    kind: "B.Sc. Double Honours",
-    major: "Computer Science &Philosophy",
+    title: "B.Sc. Double Honours",
+    field: "Computer Science & Philosophy",
     year_began: 2017,
     courses: allCourses,
     achievements: [CS_USRA, Competitive_Programming, Unix_Bootcamps],
@@ -35,8 +35,8 @@ export const undergrad: Program = {
 
 export const certificate: Program = {
     id: "certificate",
-    kind: "Certificate of Proficiency",
-    major: "Ethics, Justice, and Law",
+    title: "Certificate of Proficiency",
+    field: "Ethics, Justice, and Law",
     year_began: 2017,
     year_finish: 2020,
     courses: [PHIL_233, PHIL_236, PHIL_262, PHIL_333, PHIL_433]

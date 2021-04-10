@@ -7,7 +7,7 @@ import {
 } from "graphql";
 
 import { programType } from "./programType";
-import { getProgramsWithCourse } from "../data";
+import { getProgramsWithCourse } from "../resolvers";
 
 export const courseType = new GraphQLObjectType({
 

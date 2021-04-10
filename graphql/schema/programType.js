@@ -37,7 +37,7 @@ export const programType = new GraphQLObjectType({
     description: "Any post-secondary program.",
     fields: () => ({
 
-        kind: {
+        title: {
             type: GraphQLNonNull(GraphQLString),
             description: "The type of the program."
         },

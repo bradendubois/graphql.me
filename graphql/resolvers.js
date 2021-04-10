@@ -54,6 +54,10 @@ export function getAchievements(): Array<Achievement> {
     return allAchievements
 }
 
+export function getProgramsWithAchievement(achievement: Achievement): Array<Program> {
+    return allPrograms.filter(program => program.achievements?.find(a => a === achievement))
+}
+
 /************* Groups *************/
 
 export function getStudentGroup(groupID: string): StudentGroup | null {
