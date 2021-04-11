@@ -16,12 +16,11 @@ import {
     getStudentGroups
 } from "./resolvers";
 
+import { achievementType } from "./schema/achievementType";
 import { courseType } from "./schema/courseType";
 import { employmentType } from "./schema/employmentType";
 import { programEnum, programType } from "./schema/programType";
 import { groupType } from "./schema/groupType";
-import { achievementType } from "./schema/achievementType";
-
 
 const queryType = new GraphQLObjectType({
 
@@ -66,7 +65,7 @@ const queryType = new GraphQLObjectType({
             args: {
                 achievementID: {
                     description: "The ID / shorthand of the achievement.",
-                    type: GraphQLNonNull(GraphQLString)
+                    type: GraphQLString
                 }
             },
             resolve: (_source, { achievementID }) => getAchievement(achievementID)

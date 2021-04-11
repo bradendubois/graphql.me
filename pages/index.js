@@ -20,7 +20,7 @@ const Home = () => (
             <GraphiQL
                 fetcher={async graphQLParams => {
                     const data = await fetch(
-                        '/api/graphql',
+                        '/api',
                         {
                             method: 'POST',
                             headers: {

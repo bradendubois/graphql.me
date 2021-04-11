@@ -6,7 +6,7 @@ My personal resume, as an avant-garde [GraphQL](https://graphql.org/) API.
 - The [schema](https://graphql.org/learn/schema/) can be found [here](./graphql/schema.js).
 - Currently, there is no database (as it seems unnecessary for such small data), and instead is stored [here](./graphql/data).
 - A [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) interface is accessible at [api.bradendubois.dev](https://api.bradendubois.dev/).
-- Queries can also be made directly to [api.bradendubois.dev/api/graphql](http://api.bradendubois.dev/api/graphql).
+- Queries can also be made directly to [api.bradendubois.dev/api/graphql](http://api.bradendubois.dev/api).
 - This is a [Next.js](https://nextjs.org/) project, hosted on [Vercel](https://vercel.com/), the creators of Next.js.
 
 ## Start
