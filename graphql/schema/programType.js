@@ -47,6 +47,11 @@ export const programType = new GraphQLObjectType({
             description: "The specific areas of study."
         },
 
+        institution: {
+            type: GraphQLNonNull(GraphQLString),
+            description: "The university or similar institution studied at."
+        },
+
         year_began: {
             type: GraphQLNonNull(GraphQLInt),
             description: "The year that study of this program officially began."
