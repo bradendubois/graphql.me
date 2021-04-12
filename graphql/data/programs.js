@@ -15,6 +15,7 @@ export type Program = {
     title: string,
     field: string,
     institution: string,
+    location: string,
     year_began: number,
     year_finish?: number,
     courses: Array<Course>,
@@ -29,7 +30,9 @@ export const undergrad: Program = {
     title: "B.Sc. Double Honours",
     field: "Computer Science & Philosophy",
     institution: "University of Saskatchewan",
+    location: "Saskatoon, SK",
     year_began: 2017,
+    year_finish: 2022,
     courses: allCourses,
     achievements: [CS_USRA, Competitive_Programming, Unix_Bootcamps],
     groups: allStudentGroups
@@ -40,6 +43,7 @@ export const certificate: Program = {
     title: "Certificate of Proficiency",
     field: "Ethics, Justice, and Law",
     institution: "University of Saskatchewan",
+    location: "Saskatoon, SK",
     year_began: 2017,
     year_finish: 2020,
     courses: [PHIL_233, PHIL_236, PHIL_262, PHIL_333, PHIL_433]
