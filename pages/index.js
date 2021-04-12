@@ -2,7 +2,47 @@ import Head from 'next/head'
 import GraphiQL from 'graphiql';
 import "graphiql/graphiql.min.css"
 
-import "../styles/Home.module.css"
+const defaultQuery =
+`# GraphiQL Resume
+#
+# Learn more on GraphQL: https://graphql.org/ 
+#
+# See my website: https://bradendubois.dev
+# See the source: https://github.com/bradendubois/graphql.me
+#
+# Hint: Not all data is shown by default :)
+
+{
+  programs {
+    title
+    field
+    year_began
+    year_finish
+  }
+  
+  employment {
+    title
+    location
+    description
+    start_year
+    end_year
+  }
+  
+  achievements {
+    title,
+    description
+    year
+    year_modifier
+  }
+  
+  groups {
+    title
+    role
+    join_year
+    exit_year
+  }
+}
+`
 
 const Home = () => (
 
@@ -33,9 +73,10 @@ const Home = () => (
                     );
                     return data.json().catch(() => data.text());
                 }}
+                
+                query={defaultQuery}
             />
         </main>
-
     </div>
 );
 
