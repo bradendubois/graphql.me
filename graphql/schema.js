@@ -11,7 +11,7 @@ import {
     getCourse,
     getEmployment,
     getProgram,
-    getPrograms,
+    getPrograms, getSocials,
     getStudentGroup,
     getStudentGroups
 } from "./resolvers";
@@ -21,6 +21,7 @@ import { courseType } from "./schema/courseType";
 import { employmentType } from "./schema/employmentType";
 import { programEnum, programType } from "./schema/programType";
 import { groupType } from "./schema/groupType";
+import {socialType} from "./schema/socialType";
 
 const queryType = new GraphQLObjectType({
 
@@ -90,6 +91,11 @@ const queryType = new GraphQLObjectType({
         groups: {
             type: GraphQLList(groupType),
             resolve: (_source) => getStudentGroups()
+        },
+
+        socials: {
+            type: GraphQLList(socialType),
+            resolve: (_source) => getSocials()
         }
     })
 })

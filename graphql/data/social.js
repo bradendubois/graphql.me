@@ -3,39 +3,46 @@
 /************************* Type *************************/
 
 export type Social = {
-    id: string,
+    network: string,
+    account: string,
     link: string
 };
 
 /************************* Data *************************/
 
-export const Github = {
-    id: "bradendubois",
+export const Github: Social = {
+    network: "Github",
+    account: "bradendubois",
     link: "https://github.com/bradendubois"
 }
 
-export const LinkedIn = {
-    id: "bradendubois",
+export const LinkedIn: Social = {
+    network: "LinkedIn",
+    account: "bradendubois",
     link: "https://linkedin.com/in/bradendubois"
 }
 
-export const Email = {
-    id: "braden.dubois@usask.ca",
+export const Email: Social = {
+    network: "email",
+    account: "braden.dubois@usask.ca",
     link: "mailto:braden.dubois@usask.ca",
 }
 
-export const GraphQL_Page = {
-    id: "api.bradendubois.dev",
+export const GraphQL_Page: Social = {
+    network: "GraphQL Page",
+    account: "api.bradendubois.dev",
     link: "https://api.bradendubois.dev/"
 }
 
-export const GraphQL_API = {
-    id: "api.bradendubois.dev/api",
+export const GraphQL_API: Social = {
+    network: "GraphQL API",
+    account: "api.bradendubois.dev/api",
     link: "https://api.bradendubois.dev/api"
 }
 
-export const Website = {
-    id: "bradendubois.dev",
+export const Website: Social = {
+    network: "Website",
+    account: "bradendubois.dev",
     link: "https://bradendubois.dev"
 }
 

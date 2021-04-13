@@ -41,6 +41,12 @@ const defaultQuery =
     join_year
     exit_year
   }
+  
+  socials {
+    network
+    account
+    link
+  }
 }
 `
 

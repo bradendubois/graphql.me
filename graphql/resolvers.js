@@ -5,12 +5,14 @@ import type { Course } from "./data/courses";
 import type { Employment } from "./data/employment";
 import type { Program } from "./data/programs";
 import type { StudentGroup } from "./data/studentGroups";
+import type { Social } from "./data/social";
 
 import { allAchievements } from "./data/achievements";
 import { allCourses } from "./data/courses";
 import { allEmployments } from "./data/employment";
 import { allPrograms } from "./data/programs";
 import { allStudentGroups } from "./data/studentGroups";
+import { allSocials } from "./data/social";
 
 /************************* Functions *************************/
 
@@ -66,4 +68,10 @@ export function getStudentGroup(groupID: string): StudentGroup | null {
 
 export function getStudentGroups(): Array<StudentGroup> {
     return allStudentGroups
+}
+
+/************* Socials *************/
+
+export function getSocials(): Array<Social> {
+    return allSocials
 }
