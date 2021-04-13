@@ -2,7 +2,7 @@
 
 /************************* Type *************************/
 
-export type Contact = {
+export type Social = {
     id: string,
     link: string
 };
@@ -10,24 +10,35 @@ export type Contact = {
 /************************* Data *************************/
 
 export const Github = {
-
+    id: "bradendubois",
+    link: "https://github.com/bradendubois"
 }
 
 export const LinkedIn = {
-
+    id: "bradendubois",
+    link: "https://linkedin.com/in/bradendubois"
 }
 
-export const
+export const Email = {
+    id: "braden.dubois@usask.ca",
+    link: "mailto:braden.dubois@usask.ca",
+}
+
+export const GraphQL_Page = {
+    id: "api.bradendubois.dev",
+    link: "https://api.bradendubois.dev/"
+}
+
+export const GraphQL_API = {
+    id: "api.bradendubois.dev/api",
+    link: "https://api.bradendubois.dev/api"
+}
+
+export const Website = {
+    id: "bradendubois.dev",
+    link: "https://bradendubois.dev"
+}
 
 /************************* Array *************************/
 
-export const allCourses: Array<Course> = [
-
-    // CMPT
-    CMPT_141, CMPT_145, CMPT_214, CMPT_215, CMPT_260, CMPT_270, CMPT_280,
-    CMPT_317, CMPT_332, CMPT_353, CMPT_360, CMPT_364, CMPT_370,
-
-    // PHIL
-    PHIL_120, PHIL_133, PHIL_206, PHIL_232, PHIL_233, PHIL_236, PHIL_262,
-    PHIL_319, PHIL_333, PHIL_433
-];
+export const allSocials: Array<Social> = [ Website, Github, LinkedIn, Email, GraphQL_Page, GraphQL_API, Website ];
