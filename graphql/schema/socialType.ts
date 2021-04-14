@@ -14,6 +14,7 @@ export const socialType = new GraphQLObjectType({
         network: {
             type: new GraphQLNonNull(GraphQLString),
             description: "The name of the platform the account relates to.",
+            resolve: (social) => social.id
         },
 
         account: {

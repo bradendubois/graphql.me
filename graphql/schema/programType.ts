@@ -11,6 +11,7 @@ import { achievementType } from "./achievementType";
 import { courseType } from "./courseType";
 import { groupType } from "./groupType";
 
+import { getAchievementsForProgram, getGroupsForProgram } from "../resolvers";
 
 export const programEnum = new GraphQLEnumType({
 
@@ -57,12 +58,12 @@ export const programType = new GraphQLObjectType({
             description: "Location of the university or institution studied at."
         },
 
-        year_began: {
+        year_start: {
             type: GraphQLNonNull(GraphQLInt),
             description: "The year that study of this program officially began."
         },
 
-        year_finish: {
+        year_end: {
             type: GraphQLInt,
             description: "The year that the requirements of this program were completed."
         },
@@ -75,11 +76,13 @@ export const programType = new GraphQLObjectType({
         achievements: {
             type: GraphQLList(achievementType),
             description: "Any relevant achievements earned during or related to this program.",
+            resolve: (program) => getAchievementsForProgram(program)
         },
 
         groups: {
             type: GraphQLList(groupType),
             description: "Any relevant student groups in which membership was maintained.",
+            resolve: (program) => getGroupsForProgram(program)
         }
     }),
 })

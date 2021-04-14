@@ -60,7 +60,6 @@ const queryType = new GraphQLObjectType({
             resolve: (_source) => getEmployment()
         },
 
-
         achievement: {
             type: achievementType,
             args: {

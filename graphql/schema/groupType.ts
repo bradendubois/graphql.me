@@ -22,12 +22,12 @@ export const groupType = new GraphQLObjectType({
             description: "Role held within the student group."
         },
 
-        join_year: {
+        year_start: {
             type: GraphQLNonNull(GraphQLInt),
             description: "Year membership began."
         },
 
-        exit_year: {
+        year_end: {
             type: GraphQLInt,
             description: "Year membership completed."
         },

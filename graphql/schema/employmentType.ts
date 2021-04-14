@@ -29,25 +29,26 @@ export const employmentType = new GraphQLObjectType({
 
         description: {
             type: GraphQLNonNull(GraphQLList(GraphQLString)),
-            description: "Descriptions of research or employment, including any relevant duties."
+            description: "Descriptions of research or employment, including any relevant duties.",
+            resolve: (employment) => Object.values(employment.description)
         },
 
-        start_year: {
+        year_start: {
             type: GraphQLNonNull(GraphQLInt),
             description: "Year research or employment began."
         },
 
-        start_month: {
+        year_start_detail: {
             type: GraphQLNonNull(GraphQLString),
             description: "Month research or employment began."
         },
 
-        end_year: {
+        year_end: {
             type: GraphQLInt,
             description: "Year research or employment completed."
         },
 
-        end_month: {
+        year_end_detail: {
             type: GraphQLString,
             description: "Month research or employment completed."
         }

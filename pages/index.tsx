@@ -16,16 +16,16 @@ const defaultQuery =
   programs {
     title
     field
-    year_began
-    year_finish
+    year_start
+    year_end
   }
   
   employment {
     title
     location
     description
-    start_year
-    end_year
+    year_start
+    year_end
   }
   
   achievements {
@@ -38,8 +38,8 @@ const defaultQuery =
   groups {
     title
     role
-    join_year
-    exit_year
+    year_start
+    year_end
   }
   
   socials {
