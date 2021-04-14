@@ -34,7 +34,8 @@ export const groupType = new GraphQLObjectType({
 
         details: {
             type: GraphQLList(GraphQLString),
-            description: "Any details of involvement or duties within the student group."
+            description: "Any details of involvement or duties within the student group.",
+            resolve: (group) => Object.values(group.details)
         },
     })
 })
