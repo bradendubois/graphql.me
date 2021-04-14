@@ -32,7 +32,7 @@ const defaultQuery =
     title,
     description
     year
-    year_modifier
+    year_detail
   }
   
   groups {

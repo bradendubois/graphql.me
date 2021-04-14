@@ -62,11 +62,21 @@ export function getProgram(programID: string): Promise<Program | null> {
 
 
 export function getCourses(): Promise<Array<Course>> {
-    return firestoreGet("courses") as Promise<Array<Course>>
+    return firestoreGet("courses") as any
 }
 
 export function getCourse(courseID: string): Promise<Course> {
-    return getCourses().then(courses => courses.find(course => course.courseID === courseID))
+    return getCourses().then(courses => {
+
+        if (courses[courseID] === undefined) return null
+
+        const c: Course = {
+            courseID,
+            name: courses[courseID]
+        }
+
+        return c
+    })
 }
 
 export function getProgramsWithCourse(course: Course): Promise<Array<Program>> {

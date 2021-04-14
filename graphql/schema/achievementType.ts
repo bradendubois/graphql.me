@@ -25,7 +25,7 @@ export const achievementType = new GraphQLObjectType({
             description: "Year the achievement occurred or was obtained."
         },
 
-        year_modifier: {
+        year_detail: {
             type: GraphQLString,
             description: "Section of the year the achievement occurred or was obtained; can be a month (January, ...) or season (Winter, ...)."
         },
