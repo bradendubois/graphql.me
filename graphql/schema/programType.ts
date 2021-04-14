@@ -11,7 +11,7 @@ import { achievementType } from "./achievementType";
 import { courseType } from "./courseType";
 import { groupType } from "./groupType";
 
-import { getAchievementsForProgram, getGroupsForProgram } from "../resolvers";
+import { getAchievementsForProgram, getCoursesForProgram, getGroupsForProgram } from "../resolvers";
 
 export const programEnum = new GraphQLEnumType({
 
@@ -71,6 +71,7 @@ export const programType = new GraphQLObjectType({
         courses: {
             type: GraphQLList(courseType),
             description: "Any relevant courses taken as part of this program.",
+            resolve: (program) => getCoursesForProgram(program)
         },
 
         achievements: {

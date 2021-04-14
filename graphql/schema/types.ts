@@ -32,7 +32,7 @@ export type Program = {
     location: string,
     year_began: number,
     year_finish?: number,
-    course_ids: Array<string>,
+    courses_ids: Array<string>,
     achievement_ids?: Array<string>,
     groups_ids?: Array<string>
 };

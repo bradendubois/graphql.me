@@ -35,23 +35,23 @@ try {
 
 const db = firebase.database()
 
-const firestoreGet = (ref) => {
-    return db
-        .ref(ref)
-        .get()
-        .then(snapshot => snapshot.toJSON())
-        .then(json => Object.keys(json)
-                .map(key => { return {
-                    id: key,
-                    ...json[key]
-                }})
-        )
-}
+const firestoreGet = (ref) => db
+    .ref(ref)
+    .get()
+    .then(snapshot => snapshot.toJSON())
+
+const idMerge = (object) =>
+    Object.keys(object)
+        .map(key => { return {
+            id: key,
+            ...object[key]
+        }})
+
 
 /************* Programs *************/
 
 export function getPrograms(): Promise<Array<Program>> {
-    return firestoreGet("programs")
+    return firestoreGet("programs").then(programs => idMerge(programs))
 }
 
 export function getProgram(programID: string): Promise<Program | null> {
@@ -62,27 +62,32 @@ export function getProgram(programID: string): Promise<Program | null> {
 
 
 export function getCourses(): Promise<Array<Course>> {
-    return firestoreGet("courses")
+    return firestoreGet("courses") as Promise<Array<Course>>
 }
 
-export function getCourse(courseID: string): Promise<Course | null> {
-    return getCourses().then(courses => courses.find(course => course.courseID === courseID) || null)
+export function getCourse(courseID: string): Promise<Course> {
+    return getCourses().then(courses => courses.find(course => course.courseID === courseID))
 }
 
 export function getProgramsWithCourse(course: Course): Promise<Array<Program>> {
-    return getPrograms().then(programs => programs.filter(program => program.course_ids.find(c => c === course.courseID)))
+    return getPrograms().then(programs => programs.filter(program => program.courses_ids.find(c => c === course.courseID)))
+}
+
+
+export function getCoursesForProgram(program: Program): Array<Promise<Course>> {
+    return Object.values(program.courses_ids).map(course_id => getCourse(course_id))
 }
 
 /************* Employment *************/
 
 export function getEmployment(): Promise<Array<Employment>> {
-    return firestoreGet("employment")
+    return firestoreGet("employment").then(employment => idMerge(employment))
 }
 
 /************* Achievements *************/
 
 export function getAchievements(): Promise<Array<Achievement>> {
-    return firestoreGet("achievements")
+    return firestoreGet("achievements").then(achievements => idMerge(achievements))
 }
 
 export function getAchievement(achievementID: string): Promise<Achievement | null> {
@@ -103,7 +108,7 @@ export function getProgramsWithAchievement(achievement: Achievement): Promise<Ar
 /************* Groups *************/
 
 export function getStudentGroups(): Promise<Array<StudentGroup>> {
-    return firestoreGet("groups")
+    return firestoreGet("groups").then(groups => idMerge(groups))
 }
 
 export function getStudentGroup(groupID: string): Promise<StudentGroup | null> {
@@ -121,5 +126,5 @@ export function getGroupsForProgram(program: Program): Array<Promise<StudentGrou
 /************* Socials *************/
 
 export function getSocials(): Promise<Array<Social>> {
-    return firestoreGet("socials")
+    return firestoreGet("socials").then(social => idMerge(social))
 }
