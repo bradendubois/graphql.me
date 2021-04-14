@@ -127,10 +127,12 @@ export function getStudentGroup(groupID: string): Promise<StudentGroup | null> {
 
 
 export function getGroupsForProgram(program: Program): Array<Promise<StudentGroup>> {
-    if (program.groups_ids === undefined)
+    console.log(program)
+
+    if (program.group_ids === undefined)
         return []
 
-    return Object.values(program.groups_ids).map(groupID => getStudentGroup(groupID))
+    return Object.values(program.group_ids).map(groupID => getStudentGroup(groupID))
 }
 
 /************* Socials *************/

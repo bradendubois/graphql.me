@@ -34,7 +34,7 @@ export type Program = {
     year_finish?: number,
     courses_ids: Array<string>,
     achievement_ids?: Array<string>,
-    groups_ids?: Array<string>
+    group_ids?: Array<string>
 };
 
 
