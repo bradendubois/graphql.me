@@ -42,10 +42,10 @@ const firestoreGet = (ref) => db
 
 const idMerge = (object) =>
     Object.keys(object)
-        .map(key => { return {
+        .map(key => ({
             id: key,
             ...object[key]
-        }})
+        }))
 
 
 /************* Programs *************/

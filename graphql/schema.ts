@@ -21,7 +21,7 @@ import { courseType } from "./schema/courseType";
 import { employmentType } from "./schema/employmentType";
 import { programEnum, programType } from "./schema/programType";
 import { groupType } from "./schema/groupType";
-import {socialType} from "./schema/socialType";
+import { socialType } from "./schema/socialType";
 
 const queryType = new GraphQLObjectType({
 
