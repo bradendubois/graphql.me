@@ -47,6 +47,24 @@ const defaultQuery =
     account
     link
   }
+  
+  projects {
+    
+    title
+    description
+
+    repositories {
+        host
+        owner
+        repository
+        title
+    }
+    
+    collaborators {
+      title
+      url
+    }
+  }
 }
 `
 

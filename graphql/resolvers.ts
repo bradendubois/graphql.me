@@ -7,7 +7,7 @@ import {
     Achievement,
     Course,
     Employment,
-    Program,
+    Program, Project,
     Social,
     StudentGroup
 } from "./schema/types"
@@ -25,6 +25,8 @@ const firebaseConfig = {
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.APP_ID
 };
+
+console.log(firebaseConfig)
 
 try {
     firebase.initializeApp(firebaseConfig);
@@ -139,4 +141,14 @@ export function getGroupsForProgram(program: Program): Array<Promise<StudentGrou
 
 export function getSocials(): Promise<Array<Social>> {
     return firestoreGet("socials").then(social => idMerge(social))
+}
+
+/************* Projects *************/
+
+export function getProjects(): Promise<Array<Project>> {
+    return firestoreGet("projects").then(project => idMerge(project))
+}
+
+export function getProject(projectID: string): Promise<Project | null> {
+    return getProjects().then(projects => projects.find(project => project.id === projectID) || null)
 }

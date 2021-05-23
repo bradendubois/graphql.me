@@ -54,6 +54,33 @@ export type StudentGroup = {
 };
 
 
+type Link = {
+    title: string,
+    url?: string
+}
+
+type Repository = {
+    title: string
+    host: string
+    account?: string
+    repository: string
+}
+
+export type Project = {
+    id: string,
+    content: {
+        title: string
+        markdown: string
+    }[]
+    description: string,
+    related: Array<Link>
+    repositories: Array<Repository>
+    year_start: number,
+    year_start_detail: string,
+    year_end?: number,
+    year_end_detail?: string
+}
+
 export type YearModifier =
     "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December" |
     "Winter" | "Spring" | "Summer" | "Fall";
