@@ -87,6 +87,11 @@ export const projectType = new GraphQLObjectType({
             description: "A brief description of the project."
         },
 
+        id: {
+            type: GraphQLNonNull(GraphQLString),
+            description: "An ID for the project for any bookkeeping / query purposes."
+        },
+
         repositories: {
             type: GraphQLList(Repository),
             description: "A list of any repositories related to the project.",
