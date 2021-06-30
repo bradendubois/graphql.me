@@ -7,7 +7,7 @@ import {
     Achievement,
     Course,
     Employment,
-    Program, Project,
+    Program, Project, Skill,
     Social,
     StudentGroup
 } from "./schema/types"
@@ -135,6 +135,19 @@ export function getGroupsForProgram(program: Program): Array<Promise<StudentGrou
         return []
 
     return Object.values(program.group_ids).map(groupID => getStudentGroup(groupID))
+}
+
+/************* Skills *************/
+
+export function getSkills(): Promise<void | Skill[]> {
+     return firestoreGet("skills").then(res => Object.keys(res).map(category => {
+         let values = res[category]
+         return Object.values(values).map(i => ({
+             // @ts-ignore
+             ...i,
+             category
+         }))
+     })).then(result => result.flat())
 }
 
 /************* Socials *************/

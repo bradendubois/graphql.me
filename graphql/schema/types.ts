@@ -53,6 +53,12 @@ export type StudentGroup = {
     id: string
 };
 
+export type Skill = {
+    category: string,
+    experience: string,
+    name: string
+}
+
 
 type Link = {
     title: string,
