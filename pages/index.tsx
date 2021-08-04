@@ -122,7 +122,7 @@ const Home = () => (
                     return data.json().catch(() => data.text());
                 }}
                 
-                query={defaultQuery}
+                // query={defaultQuery}
             />
         </main>
     </div>
