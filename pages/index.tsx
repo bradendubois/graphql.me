@@ -16,30 +16,54 @@ const defaultQuery =
   programs {
     title
     field
-    year_start
-    year_end
+    duration {
+      start {
+        year
+        detail
+      }
+
+      end {
+        year
+        detail
+      }
+    }
   }
   
   employment {
     title
     location
     description
-    year_start
-    year_end
+    duration {
+      start {
+        year
+      }
+
+      end {
+        year
+      }
+    }
   }
   
   achievements {
     title,
     description
-    year
-    year_detail
+    when {
+      year
+    }
   }
   
   groups {
     title
     role
-    year_start
-    year_end
+    duration {
+      start {
+        year
+      }
+
+      end {
+        year
+      }
+    }
   }
   
   socials {

@@ -5,6 +5,7 @@ import {
     GraphQLObjectType,
     GraphQLString
 } from "graphql";
+import { durationType } from "./timeType";
 
 export const groupType = new GraphQLObjectType({
 
@@ -22,14 +23,9 @@ export const groupType = new GraphQLObjectType({
             description: "Role held within the student group."
         },
 
-        year_start: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "Year membership began."
-        },
-
-        year_end: {
-            type: GraphQLInt,
-            description: "Year membership completed."
+        duration: {
+            type: GraphQLNonNull(durationType),
+            description: "Duration of membership of the group."
         },
 
         details: {

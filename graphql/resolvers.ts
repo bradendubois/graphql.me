@@ -26,8 +26,6 @@ const firebaseConfig = {
     appId: process.env.APP_ID
 };
 
-console.log(firebaseConfig)
-
 try {
     firebase.initializeApp(firebaseConfig);
 } catch (err) {

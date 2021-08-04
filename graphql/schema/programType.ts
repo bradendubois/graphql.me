@@ -12,6 +12,7 @@ import { courseType } from "./courseType";
 import { groupType } from "./groupType";
 
 import { getAchievementsForProgram, getCoursesForProgram, getGroupsForProgram } from "../resolvers";
+import { durationType } from "./timeType";
 
 export const programEnum = new GraphQLEnumType({
 
@@ -58,14 +59,9 @@ export const programType = new GraphQLObjectType({
             description: "Location of the university or institution studied at."
         },
 
-        year_start: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "The year that study of this program officially began."
-        },
-
-        year_end: {
-            type: GraphQLInt,
-            description: "The year that the requirements of this program were completed."
+        duration: {
+            type: GraphQLNonNull(durationType),
+            description: "Duration the program is/was studied."
         },
 
         courses: {

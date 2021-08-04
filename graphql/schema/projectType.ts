@@ -5,6 +5,7 @@ import {
     GraphQLObjectType,
     GraphQLString
 } from "graphql";
+import { durationType } from "./timeType";
 
 
 const Link = new GraphQLObjectType({
@@ -110,24 +111,9 @@ export const projectType = new GraphQLObjectType({
             resolve: (project) => Object.values(project.related ?? {})
         },
 
-        year_start: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "Year the project began."
-        },
-
-        year_start_detail: {
-            type: GraphQLNonNull(GraphQLString),
-            description: "Month the project began."
-        },
-
-        year_end: {
-            type: GraphQLInt,
-            description: "Year the project completed."
-        },
-
-        year_end_detail: {
-            type: GraphQLString,
-            description: "Month the project completed."
+        duration: {
+            type: GraphQLNonNull(durationType),
+            description: "Duration the project is/was under development."
         },
 
         content: {

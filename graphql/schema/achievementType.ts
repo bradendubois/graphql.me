@@ -1,11 +1,13 @@
 import {
     GraphQLInt,
+    GraphQLNonNull,
     GraphQLObjectType,
     GraphQLString
 } from "graphql";
 
 import { programType } from "./programType"
 import { getProgramsWithAchievement } from "../resolvers"
+import { timeType } from "./timeType";
 
 
 
@@ -20,14 +22,9 @@ export const achievementType = new GraphQLObjectType({
             description: "Title of the achievement."
         },
 
-        year: {
-            type: GraphQLInt,
-            description: "Year the achievement occurred or was obtained."
-        },
-
-        year_detail: {
-            type: GraphQLString,
-            description: "Section of the year the achievement occurred or was obtained; can be a month (January, ...) or season (Winter, ...)."
+        when: {
+            type: GraphQLNonNull(timeType),
+            description: "When the achievement or award was granted or otherwise issued."
         },
 
         description: {

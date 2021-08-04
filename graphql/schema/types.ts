@@ -1,67 +1,60 @@
 // @flow
 
 export type Achievement = {
-    title: string,
-    year: number,
-    year_modifier: YearModifier,
-    description: string,
+    title: string
+    when: Time
+    description: string
     id: string
 };
 
 export type Course = {
-    courseID: string,
-    name: string,
+    courseID: string
+    name: string
 };
 
 export type Employment = {
-    title: string,
-    description: Array<string>,
-    institution: string,
-    location: string,
-    start_year: number,
-    start_month: string,
-    end_year?: number,
-    end_month?: string
+    title: string
+    description: Array<string>
+    institution: string
+    location: string
+    duration: Duration
 };
 
 export type Program = {
-    id: string,
-    title: string,
-    field: string,
-    institution: string,
-    location: string,
-    year_began: number,
-    year_finish?: number,
-    courses_ids: Array<string>,
-    achievement_ids?: Array<string>,
+    id: string
+    title: string
+    field: string
+    institution: string
+    location: string
+    duration: Duration
+    courses_ids: Array<string>
+    achievement_ids?: Array<string>
     group_ids?: Array<string>
 };
 
 
 export type Social = {
-    network: string,
-    account: string,
+    network: string
+    account: string
     link: string
 };
 
 export type StudentGroup = {
-    title: string,
-    role: string,
-    join_year: number,
-    exit_year?: number,
-    details?: Array<string>,
+    title: string
+    role: string
+    duration: Duration
+    details?: Array<string>
     id: string
 };
 
 export type Skill = {
-    category: string,
-    experience: string,
+    category: string
+    experience: string
     name: string
 }
 
-
 type Link = {
-    title: string,
+    title: string
     url?: string
 }
 
@@ -73,20 +66,27 @@ type Repository = {
 }
 
 export type Project = {
-    id: string,
+    id: string
     content: {
         title: string
         markdown: string
     }[]
-    description: string,
+    description: string
     related: Array<Link>
     repositories: Array<Repository>
-    year_start: number,
-    year_start_detail: string,
-    year_end?: number,
-    year_end_detail?: string
+    duration: Duration
 }
 
 export type YearModifier =
     "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December" |
     "Winter" | "Spring" | "Summer" | "Fall";
+
+export type Time = {
+    year: number
+    detail: String
+}
+
+export type Duration = {
+    start: Time
+    end?: Time
+}

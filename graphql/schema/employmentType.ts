@@ -5,6 +5,7 @@ import {
     GraphQLObjectType,
     GraphQLString
 } from "graphql";
+import { durationType } from "./timeType";
 
 export const employmentType = new GraphQLObjectType({
 
@@ -33,24 +34,9 @@ export const employmentType = new GraphQLObjectType({
             resolve: (employment) => Object.values(employment.description)
         },
 
-        year_start: {
-            type: GraphQLNonNull(GraphQLInt),
-            description: "Year research or employment began."
-        },
-
-        year_start_detail: {
-            type: GraphQLNonNull(GraphQLString),
-            description: "Month research or employment began."
-        },
-
-        year_end: {
-            type: GraphQLInt,
-            description: "Year research or employment completed."
-        },
-
-        year_end_detail: {
-            type: GraphQLString,
-            description: "Month research or employment completed."
+        duration: {
+            type: GraphQLNonNull(durationType),
+            description: "Duration the position has been/was held."
         }
     })
 })
