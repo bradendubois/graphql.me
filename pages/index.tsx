@@ -92,7 +92,9 @@ const defaultQuery =
 }
 `
 
-const Home = () => (
+const Home = () => {
+
+  return (
 
     <div>
         <Head>
@@ -122,10 +124,11 @@ const Home = () => (
                     return data.json().catch(() => data.text());
                 }}
                 
-                query={defaultQuery}
+                defaultQuery={defaultQuery}
             />
         </main>
     </div>
-);
+  )
+};
 
 export default Home
